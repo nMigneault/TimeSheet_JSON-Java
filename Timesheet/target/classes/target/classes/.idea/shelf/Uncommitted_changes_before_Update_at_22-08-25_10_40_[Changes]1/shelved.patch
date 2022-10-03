@@ -1,0 +1,302 @@
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	
++++ /dev/null	
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: com/rosemont/model/Employee.java
+===================================================================
+diff --git a/com/rosemont/model/Employee.java b/com/rosemont/model/Employee.java
+new file mode 100644
+--- /dev/null	
++++ b/com/rosemont/model/Employee.java	
+@@ -0,0 +1,63 @@
++package com.rosemont.model;
++public class Employee {
++
++    public enum EmployeeType {
++        NORMAL,
++        ADMINISTRATION
++    }
++
++    private int employeeID;
++    private EmployeeType employeeType;
++    private TimeCard timeCard;
++    public Employee()
++    {}
++    public Employee(int employeeID, TimeCard timeCard) {
++        this(employeeID);
++        this.timeCard = timeCard;
++    }
++    public Employee(int employeeID)
++    {
++        this.employeeType = EmployeeType.NORMAL;
++        this.employeeID = employeeID;
++        if(this.employeeID < 1000)
++        {
++            employeeType = EmployeeType.ADMINISTRATION;
++        }
++    }
++
++    public TimeCard getTimeCard() {
++        return timeCard;
++    }
++    public void setTimeCard(TimeCard timeCard) {
++        this.timeCard = timeCard;
++    }
++    public void setEmployeeId(int employeeID)
++    {
++        if(employeeID > 0)
++        {
++            this.employeeID = employeeID;
++        }
++    }
++    public int getEmployeeId()
++    {
++        return employeeID;
++    }
++
++    public void setEmployeeType(EmployeeType employeeType)
++    {
++        if(this.getEmployeeId() < 1000 && this.employeeType == EmployeeType.ADMINISTRATION)
++        {
++            employeeType = EmployeeType.ADMINISTRATION;
++        }
++
++        if(this.getEmployeeId() < 1000 && this.employeeType == EmployeeType.NORMAL)
++        {
++            employeeType = EmployeeType.NORMAL;
++        }
++    }
++    public EmployeeType getEmployeeType() {
++        return employeeType;
++    }
++
++
++}
+Index: com/rosemont/model/Project.java
+===================================================================
+diff --git a/com/rosemont/model/Project.java b/com/rosemont/model/Project.java
+new file mode 100644
+--- /dev/null	
++++ b/com/rosemont/model/Project.java	
+@@ -0,0 +1,60 @@
++package com.rosemont.model;
++
++public class Project {
++
++    public enum ProjectType {
++        TELETRAVAIL, BUREAU
++    }
++    private int projectId;
++    private ProjectType projectType;         //Type du projet : énumération de type ProjectType
++
++    public Project()
++    {}
++
++    public Project(int projectId)
++    {
++        this.projectType = ProjectType.BUREAU;
++        this.projectId = projectId;
++        if(this.projectId > 900)
++        {
++            this.projectType = ProjectType.TELETRAVAIL;
++        }
++    }
++
++    public void setProjectId(int projectID)
++    {
++        if(projectId > 0)
++        {
++            this.projectId = projectID;
++        }
++    }
++    public int getProjectId()
++    {
++        return projectId;
++    }
++
++    public void setProjectType(ProjectType projectType)
++    {
++        /*
++         * On s'assure que le type du projet soit compatible avec le code de ce dernier.
++         * S'il s'agit d'un code inférieur à 900, le projet doit être de type télétravail,
++         * sinon, on rejette la modification
++         *
++         * On procède de façon analogue pour les code de projets supérieurs ou égaux à 900
++         */
++
++        if(projectId > 900 && projectType == ProjectType.TELETRAVAIL)
++        {
++            projectType = ProjectType.TELETRAVAIL;
++        }
++
++        if(projectId <= 900 && projectType == ProjectType.BUREAU)
++        {
++            projectType = ProjectType.BUREAU;
++        }
++    }
++    public ProjectType getProjectType()
++    {
++        return projectType;
++    }
++}
+Index: com/rosemont/model/TimeEntry.java
+===================================================================
+diff --git a/com/rosemont/model/TimeEntry.java b/com/rosemont/model/TimeEntry.java
+new file mode 100644
+--- /dev/null	
++++ b/com/rosemont/model/TimeEntry.java	
+@@ -0,0 +1,42 @@
++package com.rosemont.model;
++
++public class TimeEntry {
++    private int duration;
++    private Project project;
++
++    public TimeEntry()
++    {
++    }
++    public TimeEntry(int duration)
++    {
++        this.duration = duration;
++    }
++
++
++    public TimeEntry(int duration, Project project)
++    {
++        this.duration = duration;
++        this.project = project;
++    }
++
++    public int getDuration()
++    {
++        return duration;
++    }
++
++    public void setDuration(int duration)
++    {
++
++        this.duration = duration;
++    }
++
++    public Project getProject()
++    {
++        return project;
++    }
++
++    public void setProject(Project project)
++    {
++        this.project = project;
++    }
++}
+Index: com/rosemont/model/TimeCard.java
+===================================================================
+diff --git a/com/rosemont/model/TimeCard.java b/com/rosemont/model/TimeCard.java
+new file mode 100644
+--- /dev/null	
++++ b/com/rosemont/model/TimeCard.java	
+@@ -0,0 +1,20 @@
++package com.rosemont.model;
++
++public class TimeCard {
++    private DayOfWeek[] daysOfWeek; //tableau des 7 jours de la semaine
++
++    public TimeCard(DayOfWeek[] daysOfWeek)
++    {
++        this.daysOfWeek = daysOfWeek;
++    }
++
++    public DayOfWeek[] getDaysOfWeek()
++    {
++        return daysOfWeek;
++    }
++
++    public void setDaysOfWeek(DayOfWeek[] daysOfWeek)
++    {
++        this.daysOfWeek = daysOfWeek;
++    }
++}
+Index: com/rosemont/model/DayOfWeek.java
+===================================================================
+diff --git a/com/rosemont/model/DayOfWeek.java b/com/rosemont/model/DayOfWeek.java
+new file mode 100644
+--- /dev/null	
++++ b/com/rosemont/model/DayOfWeek.java	
+@@ -0,0 +1,50 @@
++package com.rosemont.model;
++import java.util.HashSet;
++/*enum dans une classe */
++public class DayOfWeek
++{
++    public enum Day
++    {
++        JOUR1,
++        JOUR2,
++        JOUR3,
++        JOUR4,
++        JOUR5,
++        WEEKEND1,
++        WEEKEND2
++    }
++    private Day day;
++    private HashSet<TimeEntry> timeEntries;
++    public DayOfWeek()
++    {
++        timeEntries = new HashSet<TimeEntry>();
++    }
++    public DayOfWeek(Day day)
++    {
++        this();
++        this.day = day;
++    }
++
++    public void createTimeEntry()
++    {
++        timeEntries.add(new TimeEntry());
++    }
++
++    public Day getDay() {
++        return day;
++    }
++    public void setDay(Day day) {
++        this.day = day;
++    }
++    public HashSet<TimeEntry> getTimeEntries() {
++        return timeEntries;
++    }
++
++
++
++
++
++
++
++
++}
+Index: .idea/vcs.xml
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/vcs.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
