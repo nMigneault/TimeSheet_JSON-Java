@@ -1,0 +1,76 @@
+{
+  "EmployeeID": 802,
+  "TimeCard": {
+    "DaysOfWeek": [
+      {
+        "DayValue": 0,
+        "DayDate": "2022-10-03T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 999,
+            "Duration": 420
+          },
+          {
+            "ProjectId": 400,
+            "Duration": 450
+          }
+        ]
+      },
+      {
+        "DayValue": 1,
+        "DayDate": "2022-10-04T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 400,
+            "Duration": 450
+          }
+        ]
+      },
+      {
+        "DayValue": 2,
+        "DayDate": "2022-10-05T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 400,
+            "Duration": 450
+          }
+        ]
+      },
+      {
+        "DayValue": 3,
+        "DayDate": "2022-10-06T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 500,
+            "Duration": 435
+          }
+        ]
+      },
+      {
+        "DayValue": 4,
+        "DayDate": "2022-10-07T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 500,
+            "Duration": 500
+          }
+        ]
+      },
+      {
+        "DayValue": 5,
+        "DayDate": "2022-10-08T00:00:00",
+        "ProjectList": [
+          {
+            "ProjectId": 950,
+            "Duration": 400
+          }
+        ]
+      },
+      {
+        "DayValue": 6,
+        "DayDate": "2022-10-09T00:00:00",
+        "ProjectList": []
+      }
+    ]
+  }
+}
