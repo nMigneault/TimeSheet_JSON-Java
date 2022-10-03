@@ -44,5 +44,4 @@ _inputfile.json_ : fichier d'entrées au format JSON, contenant les données de 
 
 _result.json_ : fichier de sortie contenant les résultats de la validation
 
-
-
+Le dossier **Feuilles_de_temps(tests)** contient des feuilles de temps au format JSON à utiliser comme inputs pour tester l'application.
