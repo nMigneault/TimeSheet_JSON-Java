@@ -26,15 +26,15 @@ Le projet a été compilé avec la JDK 11, minimum requis pour exécuter le prog
 Contenu des répertoires
 -----------------------
 
-###Documentation
+**Documentation**
 
 Modélisation UML
 
-###TimeSheet 
+**TimeSheet**
 
 Contient le code source du projet, réalisée avec l'IDE ItelliJ.
 
-##exécutable
+**exécutable**
 
 Le dossier exécutable contient l'exécutable TimeSheet.jar, qui doit être exécuté en ligne de commande, comme suit : 
 
@@ -44,4 +44,6 @@ _inputfile.json_ : fichier d'entrées au format JSON, contenant les données de 
 
 _result.json_ : fichier de sortie contenant les résultats de la validation
 
-Le dossier **Feuilles_de_temps(tests)** contient des feuilles de temps au format JSON à utiliser comme inputs pour tester l'application.
+**Feuilles_de_temps(tests)** 
+
+Contient des feuilles de temps au format JSON à utiliser comme inputs pour tester l'application.
